@@ -6,7 +6,9 @@
     <title>תאילנד 2026 - מפת מקומות כשרים</title>
     
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
+          crossorigin="" />
     
     <style>
         * {
@@ -314,7 +316,9 @@
     </div>
 
     <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
+            crossorigin=""></script>
     
     <script>
         let map;
@@ -325,6 +329,30 @@
         let hotelMarker = null;
         let activeFilters = new Set();
         let searchQuery = '';
+
+        // Sanitize HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Validate coordinates
+        function isValidCoordinate(lat, lng) {
+            return typeof lat === 'number' && typeof lng === 'number' &&
+                   lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
+        }
+
+        // Validate URL
+        function isValidUrl(url) {
+            if (!url || url.trim() === '') return true; // Empty is ok
+            try {
+                const parsed = new URL(url);
+                return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+            } catch {
+                return false;
+            }
+        }
 
         // Haversine distance calculation (in km)
         function calculateDistance(lat1, lng1, lat2, lng2) {
@@ -360,6 +388,12 @@
 
         // Open Grab app or browser
         function openGrab(destLat, destLng, hotelLat, hotelLng) {
+            // Validate coordinates
+            if (!isValidCoordinate(destLat, destLng) || !isValidCoordinate(hotelLat, hotelLng)) {
+                console.error('Invalid coordinates');
+                return;
+            }
+            
             // Try to open Grab app first
             const grabAppUrl = `grab://open?screenType=BOOKING&pick-up=${hotelLat},${hotelLng}&drop-off=${destLat},${destLng}`;
             const grabWebUrl = `https://www.grab.com/th/en/`;
@@ -497,6 +531,12 @@
 
         // Show place details in bottom sheet
         function showPlaceDetails(place) {
+            // Validate place data
+            if (!place || !isValidCoordinate(place.lat, place.lng)) {
+                console.error('Invalid place data');
+                return;
+            }
+
             const distance = calculateDistance(
                 currentCity.lat, currentCity.lng,
                 place.lat, place.lng
@@ -506,14 +546,20 @@
             
             document.getElementById('sheetTitle').textContent = place.name;
             
+            // Sanitize all user-facing text
+            const safeName = escapeHtml(place.name);
+            const safeCat = escapeHtml(place.cat);
+            const safeAddress = escapeHtml(place.address);
+            const safeSite = place.site ? escapeHtml(place.site) : '';
+            
             let content = `
                 <div class="info-row">
                     <div class="info-label">קטגוריה</div>
-                    <div class="info-value">${place.cat}</div>
+                    <div class="info-value">${safeCat}</div>
                 </div>
                 <div class="info-row">
                     <div class="info-label">כתובת</div>
-                    <div class="info-value">${place.address}</div>
+                    <div class="info-value">${safeAddress}</div>
                 </div>
                 <div class="info-row">
                     <div class="info-label">מרחק מהמלון</div>
@@ -521,11 +567,11 @@
                 </div>
             `;
             
-            if (place.site) {
+            if (place.site && isValidUrl(place.site)) {
                 content += `
                     <div class="info-row">
                         <div class="info-label">אתר</div>
-                        <div class="info-value"><a href="${place.site}" target="_blank">${place.site}</a></div>
+                        <div class="info-value"><a href="${safeSite}" target="_blank" rel="noopener noreferrer">${safeSite}</a></div>
                     </div>
                 `;
             }
@@ -538,20 +584,20 @@
                 </div>
                 
                 <div class="action-buttons">
-                    <button class="action-btn primary-btn" onclick="openGoogleMaps(${place.lat}, ${place.lng}, '${place.name}')">
+                    <button class="action-btn primary-btn" id="btnMaps">
                         📍 פתח ב-Google Maps
                     </button>
-                    <button class="action-btn primary-btn" onclick="getDirections(${place.lat}, ${place.lng})">
+                    <button class="action-btn primary-btn" id="btnDirections">
                         🧭 הוראות הגעה מהמלון
                     </button>
-                    <button class="action-btn secondary-btn" onclick="openGrab(${place.lat}, ${place.lng}, ${currentCity.lat}, ${currentCity.lng})">
+                    <button class="action-btn secondary-btn" id="btnGrab">
                         🚗 הזמן Grab
                     </button>
             `;
             
-            if (place.site) {
+            if (place.site && isValidUrl(place.site)) {
                 content += `
-                    <button class="action-btn tertiary-btn" onclick="window.open('${place.site}', '_blank')">
+                    <button class="action-btn tertiary-btn" id="btnSite">
                         🌐 בקר באתר
                     </button>
                 `;
@@ -560,20 +606,48 @@
             content += `</div>`;
             
             document.getElementById('sheetContent').innerHTML = content;
+            
+            // Add event listeners instead of inline onclick
+            document.getElementById('btnMaps').addEventListener('click', () => {
+                openGoogleMaps(place.lat, place.lng, place.name);
+            });
+            
+            document.getElementById('btnDirections').addEventListener('click', () => {
+                getDirections(place.lat, place.lng);
+            });
+            
+            document.getElementById('btnGrab').addEventListener('click', () => {
+                openGrab(place.lat, place.lng, currentCity.lat, currentCity.lng);
+            });
+            
+            if (place.site && isValidUrl(place.site)) {
+                document.getElementById('btnSite').addEventListener('click', () => {
+                    window.open(place.site, '_blank', 'noopener,noreferrer');
+                });
+            }
+            
             document.getElementById('bottomSheet').classList.add('show');
             document.getElementById('overlay').classList.add('show');
         }
 
         // Open Google Maps
         function openGoogleMaps(lat, lng, name) {
+            if (!isValidCoordinate(lat, lng)) {
+                console.error('Invalid coordinates');
+                return;
+            }
             const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-            window.open(url, '_blank');
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
 
         // Get directions from hotel
         function getDirections(destLat, destLng) {
+            if (!isValidCoordinate(destLat, destLng) || !currentCity) {
+                console.error('Invalid coordinates or city');
+                return;
+            }
             const url = `https://www.google.com/maps/dir/?api=1&origin=${currentCity.lat},${currentCity.lng}&destination=${destLat},${destLng}&travelmode=walking`;
-            window.open(url, '_blank');
+            window.open(url, '_blank', 'noopener,noreferrer');
         }
 
         // Close bottom sheet
