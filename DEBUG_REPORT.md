@@ -1,7 +1,7 @@
 # 🔧 DEBUG REPORT - Thailand 2026 Kosher Map
 
 **Date:** 2026-01-27 08:53:33  
-**Status:** CRITICAL BUGS FOUND & FIXED
+**Status:** ✅ FIXED - All critical bugs resolved (Updated: 2026-01-27 09:54:54)
 
 ---
 
@@ -117,39 +117,47 @@ The file was likely corrupted during a git commit/push or copy-paste operation. 
 
 ## 🛠️ FIXES APPLIED
 
-### Fix #1: Restore Complete assets/app.js
-**Action:** Rewrote complete `assets/app.js` with proper init function and all required logic.
+### Fix #1: Restore Complete assets/app.js ✅
+**Action:** Completed the truncated `assets/app.js` with proper init function and all required logic.
 
 **Added:**
-- Complete `loadData()` function (lines 171-175)
-- Complete `init()` function (lines 177-198)
-- `DOMContentLoaded` event listener (line 200)
-- Version stamp rendering: `el("ver").textContent = APP_VERSION;`
+- Complete `loadData()` function (lines 171-175) - now includes error checking
+- Complete `init()` function (lines 177-204) - Leaflet map setup, event bindings
+- `DOMContentLoaded` event listener (line 206)
+- Version stamp rendering: `el("ver").textContent = APP_VERSION;` (line 200)
 - Proper error handling for data load failures
 - Header height calculation: `setMainTopFromHeader()`
 - Map invalidation after filter/city changes
 
-**Version:** Updated `APP_VERSION` to "v12-fixed-truncation"
+**Version:** Updated `APP_VERSION` from "v11-clean" to "v12-fixed"
 
-### Fix #2: Remove Conflicting Legacy Files
-**Action:** Marked `/css` and `/js` folders as legacy in comments.
+### Fix #2: Clean up index.html ✅
+**Action:** Removed corrupted/duplicated HTML content and updated cache-busting.
 
-**Recommendation:** Delete `/css` and `/js` folders entirely to avoid confusion, OR add clear README.md in each:
-```
-# LEGACY - DO NOT USE
-These files are not referenced by index.html.
-Canonical files are in /assets/
-```
+**Changes:**
+- Removed 100+ lines of duplicated/corrupted HTML after closing `</html>` tag
+- Updated CSS version from `?v=11` to `?v=12`
+- Updated JS version from mixed `?v=10/?v=11` to `?v=12`
+- Clean, well-formed HTML (74 lines total)
 
-### Fix #3: Update README.md
-**Action:** Added critical information for maintainers and users.
+### Fix #3: Mark Legacy Folders ✅
+**Action:** Created README files in `/css` and `/js` folders to mark them as legacy.
+
+**Files Created:**
+- `css/README_LEGACY.md` - Clear warning not to edit
+- `js/README_LEGACY.md` - Clear warning not to edit
+
+**Recommendation:** Consider deleting `/css` and `/js` folders entirely after backing up if needed.
+
+### Fix #4: Update README.md ✅
+**Action:** Added comprehensive documentation for maintainers and users.
 
 **Sections Added:**
-- ✅ Which files are canonical (`/assets` only)
-- ✅ How to update `data/places.json`
-- ✅ How to force browser refresh (query string `?v=N`)
-- ✅ How to test locally
-- ✅ Mobile debugging tips
+- ✅ **How to Update Places Data** - Instructions for editing `data/places.json`
+- ✅ **How to Force Refresh** - Cache busting with query strings
+- ✅ **Which Files Are Canonical** - Clear guidance to use `/assets`, ignore `/css` and `/js`
+- ✅ **Testing Checklist** - Desktop and mobile verification steps
+- ✅ **Troubleshooting** - Common issues and solutions
 
 ---
 
@@ -161,7 +169,7 @@ After fixes, verify the following:
 - [ ] Open https://nanoo26.github.io/Thailand-2026/?v=12
 - [ ] Console shows no errors
 - [ ] Map renders immediately
-- [ ] Version stamp shows "v12-fixed-truncation" (bottom left)
+- [ ] Version stamp shows "v12-fixed" (bottom left)
 - [ ] City tabs work (פוקט, קוסמוי, בנגקוק)
 - [ ] Filter chips work (הכל, מסעדות, חנויות)
 - [ ] Click marker → sheet opens from bottom
