@@ -6,19 +6,19 @@
   <title>Thailand 2026 - Kosher Map</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=4" />
 </head>
 
 <body>
   <header class="topbar">
-    <div class="title">
-      <div class="h1">Thailand 2026</div>
-      <div class="h2">Kosher restaurants + shops</div>
+    <div class="brand">
+      <div class="brand-title">Thailand 2026</div>
+      <div class="brand-sub">Kosher restaurants + shops</div>
     </div>
 
-    <div class="tabs" id="cityTabs"></div>
+    <div class="segmented" id="cityTabs" aria-label="בחירת עיר"></div>
 
-    <div class="filters">
+    <div class="chips" aria-label="פילטר">
       <button class="chip on" id="chipAll" type="button">הכל</button>
       <button class="chip" id="chipRestaurants" type="button">מסעדות</button>
       <button class="chip" id="chipShops" type="button">חנויות</button>
@@ -26,15 +26,38 @@
   </header>
 
   <main class="main">
-    <div id="map" class="map"></div>
+    <div id="map" class="map" aria-label="מפה"></div>
 
     <section class="sheet" id="sheet" aria-hidden="true">
-      <div class="handle"></div>
-      <div class="sheetBody">
-        <div class="sheetTitle" id="sheetTitle"></div>
-        <div class="sheetSub" id="sheetSub"></div>
+      <div class="sheet-handle"></div>
+      <div class="sheet-body">
+        <div class="sheet-title" id="sheetTitle"></div>
+        <div class="sheet-sub" id="sheetSub"></div>
+
+        <div class="ai-tip" id="aiTip"></div>
 
         <div class="actions">
+          <a class="btn primary" id="btnDirections" href="#" target="_blank" rel="noopener">Google Maps - הוראות הגעה</a>
+          <a class="btn" id="btnPlace" href="#" target="_blank" rel="noopener">Google Maps - פתח מקום</a>
+          <a class="btn" id="btnWebsite" href="#" target="_blank" rel="noopener">Website</a>
+          <a class="btn grab" id="btnGrab" href="#">Open Grab</a>
+        </div>
+
+        <div class="foot" id="foot"></div>
+
+        <button class="close" id="btnClose" type="button">סגור</button>
+      </div>
+    </section>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <div class="debug" id="debug" hidden></div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/app.js?v=4"></script>
+</body>
+</html>        <div class="actions">
           <a class="btn primary" id="btnDirections" href="#" target="_blank" rel="noopener">Google Maps - הוראות הגעה</a>
           <a class="btn" id="btnPlace" href="#" target="_blank" rel="noopener">Google Maps - פתח מקום</a>
           <a class="btn" id="btnWebsite" href="#" target="_blank" rel="noopener">Website</a>
