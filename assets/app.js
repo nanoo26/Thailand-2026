@@ -1,7 +1,7 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v13-real-places";
+const APP_VERSION = "v14-cache-fix";
 const DATA_URL = "data/places.json";
 
 const state = {
@@ -303,6 +303,9 @@ async function init() {
     render();
     
     el("ver").textContent = APP_VERSION;
+    if (el("verBadge")) {
+      el("verBadge").textContent = APP_VERSION;
+    }
   } catch (e) {
     showDebug(e && e.message ? e.message : String(e));
   }
