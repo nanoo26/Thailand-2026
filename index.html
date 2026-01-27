@@ -1,99 +1,70 @@
 <!doctype html>
-<html lang="he" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Thailand-2026 Kosher Map</title>
+  <title>Thailand 2026 - Kosher Map</title>
 
   <link rel="preconnect" href="https://unpkg.com" />
-  <link rel="preconnect" href="https://tile.openstreetmap.org" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="./assets/styles.css" />
 </head>
+
 <body>
   <header class="topbar">
     <div class="brand">
-      <div class="brand-title">Thailand-2026</div>
-      <div class="brand-sub">מפה כשרה - מסעדות וחנויות</div>
+      <div class="brand-title">Thailand 2026</div>
+      <div class="brand-sub">Kosher restaurants + shops (mobile-first)</div>
     </div>
-    <button id="btnLocate" class="icon-btn" type="button" aria-label="מיקום נוכחי" title="מיקום נוכחי">◎</button>
+
+    <div class="controls">
+      <div class="segmented" id="cityTabs" aria-label="City selector"></div>
+
+      <div class="chips">
+        <button class="chip chip-on" id="filterRestaurants" type="button">Restaurants</button>
+        <button class="chip chip-on" id="filterShops" type="button">Shops</button>
+        <button class="chip" id="filterStays" type="button">Hotels</button>
+      </div>
+    </div>
   </header>
 
-  <main class="app">
-    <section class="controls">
-      <div class="segmented" role="tablist" aria-label="בחירת עיר">
-        <button class="seg-btn" id="city-phuket" type="button" data-city="phuket" role="tab" aria-selected="true">פוקט</button>
-        <button class="seg-btn" id="city-samui" type="button" data-city="samui" role="tab" aria-selected="false">קוסמוי</button>
-        <button class="seg-btn" id="city-bangkok" type="button" data-city="bangkok" role="tab" aria-selected="false">בנגקוק</button>
+  <main class="main">
+    <div id="map" class="map" role="application" aria-label="Map"></div>
+
+    <section class="panel" aria-label="Places list">
+      <div class="panel-head">
+        <div class="panel-title" id="panelTitle">Places</div>
+        <div class="panel-meta" id="panelMeta"></div>
       </div>
+      <div class="panel-list" id="placesList"></div>
+    </section>
 
-      <div class="row">
-        <label class="field">
-          <span class="label">חיפוש</span>
-          <input id="searchInput" type="search" inputmode="search" placeholder="שם מקום" autocomplete="off" />
-        </label>
+    <section class="sheet" id="sheet" aria-hidden="true">
+      <div class="sheet-handle"></div>
+      <div class="sheet-content">
+        <div class="sheet-title" id="sheetTitle"></div>
+        <div class="sheet-sub" id="sheetSub"></div>
 
-        <label class="field">
-          <span class="label">סינון</span>
-          <select id="categoryFilter">
-            <option value="all">הכל</option>
-            <option value="restaurant">מסעדות</option>
-            <option value="shop">חנויות</option>
-          </select>
-        </label>
-      </div>
+        <div class="sheet-tip" id="sheetTip"></div>
 
-      <div class="toggles">
-        <label class="toggle">
-          <input id="hotToggle" type="checkbox" />
-          <span>חם מאוד (מעדיף מונית)</span>
-        </label>
+        <div class="sheet-actions">
+          <a class="btn primary" id="btnMapsWalk" href="#" target="_blank" rel="noopener">Google Maps - Walk</a>
+          <a class="btn" id="btnMapsDrive" href="#" target="_blank" rel="noopener">Google Maps - Taxi</a>
+          <a class="btn" id="btnGrab" href="#" rel="noopener">Open Grab</a>
+          <a class="btn" id="btnSite" href="#" target="_blank" rel="noopener">Website</a>
+        </div>
+
+        <div class="sheet-footer" id="sheetFooter"></div>
       </div>
     </section>
 
-    <section class="map-wrap">
-      <div id="map" class="map" aria-label="מפה"></div>
-      <div id="status" class="status" role="status" aria-live="polite"></div>
-    </section>
+    <div class="backdrop" id="backdrop" aria-hidden="true"></div>
   </main>
 
-  <section id="sheet" class="sheet" aria-hidden="true">
-    <div class="sheet-handle"></div>
-    <div class="sheet-head">
-      <div>
-        <div id="sheetTitle" class="sheet-title"></div>
-        <div class="badges">
-          <span id="sheetCategory" class="badge"></span>
-          <span id="sheetKosher" class="badge badge-soft"></span>
-        </div>
-      </div>
-      <button id="sheetClose" class="icon-btn" type="button" aria-label="סגור">✕</button>
-    </div>
-
-    <div id="sheetAddress" class="sheet-text"></div>
-    <div id="sheetNotes" class="sheet-text sheet-notes"></div>
-
-    <div class="actions">
-      <a id="btnWebsite" class="btn btn-secondary" href="#" target="_blank" rel="noopener">אתר</a>
-      <a id="btnMaps" class="btn btn-secondary" href="#" target="_blank" rel="noopener">פתח בגוגל מפות</a>
-      <a id="btnDirections" class="btn btn-primary" href="#" target="_blank" rel="noopener">הוראות הגעה מהמלון</a>
-    </div>
-
-    <div class="ai-tip" id="aiTip"></div>
-
-    <div class="actions">
-      <a id="btnGrab" class="btn btn-grab" href="#">פתח Grab</a>
-    </div>
-
-    <div class="sheet-footnote">
-      הערה: פתיחת Grab היא Best-effort בלבד. הניווט המדויק נשאר דרך Google Maps.
-    </div>
-  </section>
-
-  <div id="backdrop" class="backdrop" hidden></div>
-
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="js/app.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="./assets/app.js"></script>
 </body>
 </html>
