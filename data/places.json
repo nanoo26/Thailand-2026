@@ -1,0 +1,74 @@
+[
+  {
+    "city": "phuket",
+    "name": "Chabad House Phuket",
+    "cat": "מסעדה",
+    "lat": 7.8946,
+    "lng": 98.2975,
+    "address": "94 Thaweewong Road, Patong, Kathu District",
+    "site": "https://www.chabadphuket.com"
+  },
+  {
+    "city": "phuket",
+    "name": "Kosher Kitchen Patong",
+    "cat": "מסעדה",
+    "lat": 7.8960,
+    "lng": 98.2985,
+    "address": "Patong Beach Road",
+    "site": ""
+  },
+  {
+    "city": "samui",
+    "name": "Chabad Koh Samui",
+    "cat": "מסעדה",
+    "lat": 9.2295,
+    "lng": 100.0865,
+    "address": "Chaweng Beach Road",
+    "site": "https://www.chabadsamui.com"
+  },
+  {
+    "city": "samui",
+    "name": "Kosher Shop Samui",
+    "cat": "חנות",
+    "lat": 9.2270,
+    "lng": 100.0850,
+    "address": "Chaweng Center",
+    "site": ""
+  },
+  {
+    "city": "bangkok",
+    "name": "Chabad House Bangkok",
+    "cat": "מסעדה",
+    "lat": 13.7430,
+    "lng": 100.5478,
+    "address": "Sukhumvit Road Soi 22",
+    "site": "https://www.jewishthailand.com"
+  },
+  {
+    "city": "bangkok",
+    "name": "Beit Hamorim Restaurant",
+    "cat": "מסעדה",
+    "lat": 13.7320,
+    "lng": 100.5680,
+    "address": "Sukhumvit Soi 12",
+    "site": ""
+  },
+  {
+    "city": "bangkok",
+    "name": "Kosher Delight",
+    "cat": "מסעדה",
+    "lat": 13.7290,
+    "lng": 100.5750,
+    "address": "Sukhumvit Soi 8",
+    "site": ""
+  },
+  {
+    "city": "bangkok",
+    "name": "Jerusalem Kosher Shop",
+    "cat": "חנות",
+    "lat": 13.7405,
+    "lng": 100.5502,
+    "address": "Sukhumvit Soi 20",
+    "site": ""
+  }
+]

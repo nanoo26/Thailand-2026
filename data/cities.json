@@ -1,0 +1,26 @@
+[
+  {
+    "id": "phuket",
+    "name": "פוקט",
+    "nameEn": "Phuket",
+    "hotel": "Four Points by Sheraton Patong",
+    "lat": 7.8935,
+    "lng": 98.2968
+  },
+  {
+    "id": "samui",
+    "name": "קוסמוי",
+    "nameEn": "Koh Samui",
+    "hotel": "OZO Chaweng Samui",
+    "lat": 9.2281,
+    "lng": 100.0847
+  },
+  {
+    "id": "bangkok",
+    "name": "בנגקוק",
+    "nameEn": "Bangkok",
+    "hotel": "LiT Bangkok Hotel",
+    "lat": 13.7278,
+    "lng": 100.5720
+  }
+]
