@@ -103,6 +103,37 @@ The data file has two main sections:
 
 ---
 
+## 🍽️ Adding More Kosher Places
+
+To add a new restaurant or shop:
+
+1. Find the exact location on Google Maps
+2. Right-click → "What's here?" to get coordinates
+3. Edit `data/places.json` and add:
+
+```json
+{
+  "cityKey": "phuket",
+  "kind": "restaurant",
+  "name": "Your Restaurant Name",
+  "address": "Full address",
+  "lat": 7.1234,
+  "lng": 98.5678,
+  "website": "https://example.com",
+  "kosher": "Supervision type",
+  "status": "verified"
+}
+```
+
+4. Commit and push - GitHub Pages will auto-update in 2 minutes
+
+### Coordinate Tips:
+- Use at least 4 decimal places for accuracy
+- Positive lat = North, positive lng = East
+- Verify on map after adding
+
+---
+
 ## 🔄 Cache Busting (Force Browser Refresh)
 
 When you update JavaScript or CSS, browsers may cache old versions. To force refresh:
