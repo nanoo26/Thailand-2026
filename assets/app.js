@@ -1,7 +1,7 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v12-fixed";
+const APP_VERSION = "v13-real-places";
 const DATA_URL = "data/places.json";
 
 const state = {
@@ -92,14 +92,70 @@ function openSheet(item) {
   }
 
   const km = haversineKm(city.hotelLat, city.hotelLng, item.lat, item.lng);
-  const preferWalk = km < 1.2;
-
-  el("aiTip").textContent = preferWalk
-    ? `Tip: ~${km.toFixed(2)} km from hotel. Walking likely easiest.`
-    : `Tip: ~${km.toFixed(2)} km from hotel. Grab/taxi likely better.`;
+  
+  // Enhanced AI logic
+  const hour = new Date().getHours();
+  const isNight = hour >= 20 || hour < 6;
+  const isHot = hour >= 11 && hour <= 16; // midday heat
+  const isRushHour = (hour >= 7 && hour <= 9) || (hour >= 17 && hour <= 19);
+  
+  let tipText = "";
+  let mode = "walk"; // walk, grab, taxi
+  
+  if (km < 0.8) {
+    // Very close
+    if (isNight) {
+      mode = "caution";
+      tipText = `Distance: ${km.toFixed(2)} km (10 mins walk). 🌙 It's night - consider safety. Well-lit streets recommended or Grab if unsure.`;
+    } else if (isHot) {
+      tipText = `Distance: ${km.toFixed(2)} km (10 mins walk). ☀️ Midday heat - bring water! Shaded route if possible.`;
+    } else {
+      tipText = `Distance: ${km.toFixed(2)} km (~10 mins walk). 🚶 Perfect walking distance! Enjoy the scenery.`;
+    }
+  } else if (km < 1.5) {
+    // Walkable but...
+    if (isNight) {
+      mode = "grab";
+      tipText = `Distance: ${km.toFixed(2)} km (18 mins walk). 🌙 Night time - Grab recommended for safety (~50-80 THB, 5 mins).`;
+    } else if (isHot) {
+      mode = "grab";
+      tipText = `Distance: ${km.toFixed(2)} km (18 mins walk). 🌡️ Very hot now! Consider Grab to avoid heatstroke (~50-80 THB).`;
+    } else {
+      tipText = `Distance: ${km.toFixed(2)} km (15-20 mins walk). 🚶‍♂️ Walkable, but Grab is cheap (~50-70 THB, 5 mins).`;
+    }
+  } else if (km < 4) {
+    // Medium distance
+    mode = "grab";
+    if (isRushHour) {
+      tipText = `Distance: ${km.toFixed(2)} km. 🚗 Grab recommended (~80-150 THB). ⚠️ Rush hour - expect 15-25 mins with traffic.`;
+    } else {
+      tipText = `Distance: ${km.toFixed(2)} km. 🚗 Grab recommended (~80-150 THB, 10-15 mins).`;
+    }
+  } else {
+    // Far
+    mode = "taxi";
+    if (isRushHour) {
+      tipText = `Distance: ${km.toFixed(2)} km. 🚖 Taxi/Grab required (~150-250 THB). ⚠️ Rush hour - allow 30-45 mins.`;
+    } else {
+      tipText = `Distance: ${km.toFixed(2)} km. 🚖 Taxi/Grab required (~150-250 THB, 20-30 mins).`;
+    }
+  }
+  
+  // Add context-specific tips
+  if (item.notes) {
+    tipText += `\n\n📌 Note: ${item.notes}`;
+  }
+  
+  // Add Shabbat/Holiday tip if relevant
+  const dayOfWeek = new Date().getDay();
+  if (dayOfWeek === 5 && hour >= 14) { // Friday afternoon
+    tipText += `\n\n🕯️ Shabbat approaching - confirm restaurant hours!`;
+  }
+  
+  el("aiTip").textContent = tipText;
 
   const grabBtn = el("btnGrab");
-  grabBtn.style.display = preferWalk ? "none" : "flex";
+  grabBtn.style.display = (mode === "grab" || mode === "taxi") ? "flex" : "none";
   grabBtn.onclick = (e) => { e.preventDefault(); tryOpenGrab(); };
 
   el("foot").textContent = item.status ? `Status: ${item.status}` : "";
@@ -177,10 +233,9 @@ async function loadData() {
 async function init() {
   try {
     state.map = L.map("map", { zoomControl: true, tap: true });
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-      subdomains: "abcd",
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: "© OpenStreetMap, © CARTO"
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(state.map);
 
     el("backdrop").hidden = true;
