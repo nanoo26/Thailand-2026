@@ -6,7 +6,7 @@
   <title>Thailand 2026 - Kosher Map</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="assets/styles.css?v=10" />
+  <link rel="stylesheet" href="assets/styles.css?v=11" />
 </head>
 
 <body>
@@ -16,9 +16,11 @@
       <div class="brand-sub">Kosher restaurants + shops</div>
     </div>
 
-    <div class="segmented" id="cityTabs" aria-label="בחירת עיר"></div>
+    <div class="segmented" id="cityTabs" aria-label="בחירת עיר">
+      <!-- tabs injected by JS -->
+    </div>
 
-    <div class="chips">
+    <div class="chips" aria-label="פילטר">
       <button class="chip on" id="chipAll" type="button">הכל</button>
       <button class="chip" id="chipRestaurants" type="button">מסעדות</button>
       <button class="chip" id="chipShops" type="button">חנויות</button>
@@ -28,6 +30,8 @@
   <main class="main" id="main">
     <div id="map" class="map" aria-label="מפה"></div>
 
+    <div class="backdrop" id="backdrop" hidden></div>
+
     <section class="sheet" id="sheet" aria-hidden="true">
       <div class="sheet-handle"></div>
       <div class="sheet-body">
@@ -35,6 +39,39 @@
         <div class="sheet-sub" id="sheetSub"></div>
 
         <div class="ai-tip" id="aiTip"></div>
+
+        <div class="actions">
+          <a class="btn primary" id="btnDirections" href="#" target="_blank" rel="noopener">
+            Google Maps - הוראות הגעה
+          </a>
+
+          <a class="btn" id="btnPlace" href="#" target="_blank" rel="noopener">
+            Google Maps - פתח מקום
+          </a>
+
+          <a class="btn" id="btnWebsite" href="#" target="_blank" rel="noopener">
+            Website
+          </a>
+
+          <a class="btn grab" id="btnGrab" href="#">
+            Open Grab
+          </a>
+        </div>
+
+        <button class="close" id="btnClose" type="button">סגור</button>
+
+        <div class="foot" id="foot"></div>
+      </div>
+    </section>
+
+    <div class="debug" id="debug" hidden></div>
+    <div class="ver" id="ver"></div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/app.js?v=11"></script>
+</body>
+</html>        <div class="ai-tip" id="aiTip"></div>
 
         <div class="actions">
           <a class="btn primary" id="btnDirections" href="#" target="_blank" rel="noopener">Google Maps - הוראות הגעה</a>
