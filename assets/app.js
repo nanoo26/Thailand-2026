@@ -71,6 +71,56 @@ function closeSheet() {
   el("backdrop").hidden = true;
 }
 
+function getSmartAITip(km, city) {
+  const now = new Date();
+  const hour = now.getHours();
+  const day = now.getDay(); // 0=Sun, 5=Fri, 6=Sat
+  
+  const isNight = (hour >= 20 || hour < 6);
+  const isHot = (hour >= 11 && hour <= 16);
+  const isRushHour = (hour >= 7 && hour < 9) || (hour >= 17 && hour < 19);
+  const isShabbat = (day === 5 && hour >= 15) || (day === 6 && hour < 20);
+  
+  const walkMinutes = Math.round(km * 12); // ~12 min per km
+  const driveMinutes = Math.round(km * 3); // ~3 min per km in traffic
+  
+  let tip = `📍 Distance: ~${km.toFixed(2)} km from hotel\n\n`;
+  
+  if (km < 0.8) {
+    tip += `🚶 **Walk recommended** (${walkMinutes} min)\n`;
+  } else if (km < 1.5) {
+    tip += `🚶/🚗 **Walk or Grab** (${walkMinutes} min walk / ${driveMinutes} min drive)\n`;
+  } else {
+    tip += `🚗 **Grab/Taxi recommended** (~${driveMinutes} min, ${isRushHour ? '+10 min in traffic' : ''})\n`;
+  }
+  
+  // Price estimates (Thai Baht)
+  if (km >= 1.0) {
+    const minPrice = Math.round(km * 40);
+    const maxPrice = Math.round(km * 60);
+    tip += `💰 Est. fare: ${minPrice}-${maxPrice} ฿\n`;
+  }
+  
+  // Contextual warnings/tips
+  if (isNight) {
+    tip += `\n🌙 **Night time** - Consider Grab for safety`;
+  }
+  
+  if (isHot) {
+    tip += `\n☀️ **Very hot now** (${hour}:00) - Bring water! AC transport recommended`;
+  }
+  
+  if (isRushHour) {
+    tip += `\n🚗 **Rush hour** - Traffic may add 10-15 minutes`;
+  }
+  
+  if (isShabbat) {
+    tip += `\n🕯️ **Shabbat** - Plan ahead, limited transport options`;
+  }
+  
+  return tip;
+}
+
 function openSheet(item) {
   const city = state.data.cities.find(c => c.cityKey === state.cityKey);
   if (!city) return;
