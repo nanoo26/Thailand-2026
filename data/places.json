@@ -9,89 +9,109 @@
       "cityKey": "phuket",
       "kind": "restaurant",
       "name": "Chabad Phuket - The Meat Restaurant",
-      "address": "96 Ratuthit Songroipi Rd, Patong",
-      "lat": 7.8965,
-      "lng": 98.2962,
+      "address": "96 Thanon Ratuthit Songroipi Rd, Patong, Kathu, Phuket 83150",
+      "lat": 7.8943,
+      "lng": 98.2968,
       "website": "https://www.jewishthailand.com",
-      "kosher": "Chabad (Rabbi Ashkenazi)",
-      "status": "verified"
+      "kosher": "Chabad Thailand (Rabbi Ashkenazi supervision)",
+      "status": "verified",
+      "notes": "Distance from hotel: ~1.2 km. Walking: 15 mins / Grab: 5 mins"
     },
     {
       "cityKey": "phuket",
       "kind": "restaurant",
       "name": "Haleluya Kosher Restaurant",
-      "address": "74/31 Soi Banzaan, Patong",
-      "lat": 7.8946,
+      "address": "74/31 Soi Banzaan, Patong, Kathu, Phuket 83150",
+      "lat": 7.8955,
       "lng": 98.2975,
       "website": "https://haleluyaphuket.com",
-      "kosher": "Israeli-run, reliable kashrut",
-      "status": "verified"
+      "kosher": "Israeli supervision",
+      "status": "verified",
+      "notes": "Distance from hotel: ~1.1 km. Walking: 14 mins"
     },
     {
       "cityKey": "phuket",
       "kind": "restaurant",
-      "name": "Chabad Phuket Pizzeria (Dairy)",
-      "address": "96 Ratuthit Songroipi Rd, Patong",
-      "lat": 7.8965,
-      "lng": 98.2962,
+      "name": "Chabad Phuket Pizzeria",
+      "address": "96 Thanon Ratuthit Songroipi Rd, Patong, Kathu, Phuket 83150",
+      "lat": 7.8943,
+      "lng": 98.2968,
       "website": "https://www.jewishthailand.com",
-      "kosher": "Chabad Dairy",
-      "status": "verified"
+      "kosher": "Chabad Thailand (dairy)",
+      "status": "verified",
+      "notes": "Distance from hotel: ~1.2 km. Dairy only"
     },
     {
       "cityKey": "samui",
       "kind": "restaurant",
       "name": "Chabad Koh Samui - Meat Restaurant",
-      "address": "39/8 Moo 3, Bophut, Chaweng Beach",
+      "address": "39/8 Moo 3, Bophut, Chaweng Beach, Koh Samui 84320",
       "lat": 9.5314,
       "lng": 100.0640,
       "website": "https://www.jewishthailand.com",
-      "kosher": "Chabad (Rabbi Yosef Kantor)",
-      "status": "verified"
+      "kosher": "Chabad Thailand (Rabbi Yosef Kantor)",
+      "status": "verified",
+      "notes": "Distance from hotel: ~0.7 km. Walking: 9 mins. Hours: Sun-Thu 12pm-10pm, Fri 12pm-3pm, Sat night 8pm-10:30pm. Phone: +66 81 824 0588"
     },
     {
       "cityKey": "samui",
       "kind": "restaurant",
-      "name": "Chabad Koh Samui Pizzeria (Dairy)",
-      "address": "39/8 Moo 3, Bophut, Chaweng Beach",
+      "name": "Chabad Koh Samui Pizzeria",
+      "address": "39/8 Moo 3, Bophut, Chaweng Beach, Koh Samui 84320",
       "lat": 9.5314,
       "lng": 100.0640,
       "website": "https://www.jewishthailand.com",
-      "kosher": "Chabad Dairy",
-      "status": "verified"
+      "kosher": "Chabad Thailand (dairy)",
+      "status": "verified",
+      "notes": "Distance from hotel: ~0.7 km. Dairy only. Hours: Sun-Thu 10am-10pm, Fri 10am-3:30pm, Sat night 8pm-12am"
     },
     {
       "cityKey": "bangkok",
       "kind": "restaurant",
-      "name": "JCafe (Dairy)",
-      "address": "Mille Malle Mall, Sukhumvit 20",
-      "lat": 13.7352,
-      "lng": 100.5628,
+      "name": "JCafe Bangkok",
+      "address": "Mille Malle Mall, Unit 301, 66/4 Soi 2 Sukhumvit 20, Bangkok 10100",
+      "lat": 13.7371,
+      "lng": 100.5586,
       "website": "https://www.jcafekosher.com",
-      "kosher": "Certified Dairy",
-      "status": "verified"
+      "kosher": "Israeli supervision",
+      "status": "verified",
+      "notes": "Distance from hotel: ~3.2 km. Dairy only. Hours: Sun-Thu 10am-8pm, Fri 8am-5pm. Phone: +66 2-106-4930. Grab/taxi recommended"
     },
     {
       "cityKey": "bangkok",
       "kind": "restaurant",
-      "name": "JDeli (Meat)",
-      "address": "Mille Malle Mall, Sukhumvit 20",
-      "lat": 13.7352,
-      "lng": 100.5628,
+      "name": "JDeli Bangkok",
+      "address": "Mille Malle Mall, Unit 301, 66/4 Soi 2 Sukhumvit 20, Bangkok 10100",
+      "lat": 13.7371,
+      "lng": 100.5586,
       "website": "https://www.jcafekosher.com",
-      "kosher": "Certified Meat",
-      "status": "verified"
+      "kosher": "Israeli supervision (meat)",
+      "status": "verified",
+      "notes": "Distance from hotel: ~3.2 km. Meat restaurant. Grab/taxi recommended"
+    },
+    {
+      "cityKey": "bangkok",
+      "kind": "shop",
+      "name": "JCafe Kosher Shop",
+      "address": "Mille Malle Mall, Unit 301, 66/4 Soi 2 Sukhumvit 20, Bangkok 10100",
+      "lat": 13.7371,
+      "lng": 100.5586,
+      "website": "https://www.jcafekosher.com",
+      "kosher": "Israeli products",
+      "status": "verified",
+      "notes": "Distance from hotel: ~3.2 km. Imported Israeli groceries, baked goods, snacks. Grab/taxi recommended"
     },
     {
       "cityKey": "bangkok",
       "kind": "restaurant",
       "name": "Chabad Bangkok (Ohr Menachem)",
-      "address": "18 Phra Sumen Rd, Phra Nakhon",
+      "address": "18 Phra Sumen Rd, Talat Yot, Phra Nakhon, Bangkok 10200",
       "lat": 13.7612,
       "lng": 100.4946,
       "website": "https://www.jewishthailand.com",
-      "kosher": "Chabad Meat + Bakery",
-      "status": "verified"
+      "kosher": "Chabad Thailand",
+      "status": "verified",
+      "notes": "Distance from hotel: ~8.5 km. Hours: Sun-Thu 10am-7pm, Fri 10am-2:30pm. Phone: +66 2-629-2755. Grab/taxi required (30 mins drive)"
     }
   ]
 }
