@@ -1,1 +1,60 @@
-[]
+{
+  "cities": [
+    {
+      "cityKey": "phuket",
+      "labelHe": "פוקט",
+      "hotelLat": 7.904425,
+      "hotelLng": 98.29728,
+      "zoom": 13
+    },
+    {
+      "cityKey": "samui",
+      "labelHe": "קוסמוי",
+      "hotelLat": 9.52469,
+      "hotelLng": 100.05934,
+      "zoom": 14
+    },
+    {
+      "cityKey": "bangkok",
+      "labelHe": "בנגקוק",
+      "hotelLat": 13.7481024,
+      "hotelLng": 100.5295718,
+      "zoom": 13
+    }
+  ],
+  "places": [
+    {
+      "cityKey": "phuket",
+      "kind": "restaurant",
+      "name": "Chabad Phuket (Kosher)",
+      "address": "Patong, Phuket, Thailand",
+      "lat": 7.8929,
+      "lng": 98.2953,
+      "website": "https://www.jewishthailand.com/",
+      "kosher": "Chabad",
+      "status": "verified"
+    },
+    {
+      "cityKey": "samui",
+      "kind": "restaurant",
+      "name": "Chabad Koh Samui (Kosher)",
+      "address": "Chaweng Beach, Koh Samui, Thailand",
+      "lat": 9.5314,
+      "lng": 100.0640,
+      "website": "https://www.jewishthailand.com/",
+      "kosher": "Chabad",
+      "status": "verified"
+    },
+    {
+      "cityKey": "bangkok",
+      "kind": "restaurant",
+      "name": "Chabad Bangkok (Kosher)",
+      "address": "Bangkok, Thailand",
+      "lat": 13.7612,
+      "lng": 100.4946,
+      "website": "https://www.jewishthailand.com/",
+      "kosher": "Chabad",
+      "status": "verified"
+    }
+  ]
+}
