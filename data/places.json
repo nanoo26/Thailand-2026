@@ -9,27 +9,4 @@
     { "cityKey": "samui", "kind": "restaurant", "name": "Kosher (Samui) - placeholder pin", "address": "Chaweng area", "lat": 9.5314, "lng": 100.0640, "website": "", "kosher": "Verified/Check", "status": "test" },
     { "cityKey": "bangkok", "kind": "restaurant", "name": "Kosher (Bangkok) - placeholder pin", "address": "Central Bangkok", "lat": 13.7612, "lng": 100.4946, "website": "", "kosher": "Verified/Check", "status": "test" }
   ]
-}    {
-      "cityKey": "samui",
-      "kind": "restaurant",
-      "name": "Chabad Koh Samui (Kosher)",
-      "address": "Chaweng Beach, Koh Samui, Thailand",
-      "lat": 9.5314,
-      "lng": 100.0640,
-      "website": "https://www.jewishthailand.com/",
-      "kosher": "Chabad",
-      "status": "verified"
-    },
-    {
-      "cityKey": "bangkok",
-      "kind": "restaurant",
-      "name": "Chabad Bangkok (Kosher)",
-      "address": "Bangkok, Thailand",
-      "lat": 13.7612,
-      "lng": 100.4946,
-      "website": "https://www.jewishthailand.com/",
-      "kosher": "Chabad",
-      "status": "verified"
-    }
-  ]
 }
