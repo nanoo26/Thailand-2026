@@ -1,40 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Thailand 2026 - Kosher Map</title>
 
-  <link rel="preconnect" href="https://unpkg.com" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-  <link rel="stylesheet" href="./assets/styles.css" />
+  <link rel="stylesheet" href="assets/styles.css" />
 </head>
 
 <body>
   <header class="topbar">
-    <div class="brand">
-      <div class="brand-title">Thailand 2026</div>
-      <div class="brand-sub">Kosher restaurants + shops (mobile-first)</div>
+    <div class="title">
+      <div class="h1">Thailand 2026</div>
+      <div class="h2">Kosher restaurants + shops</div>
     </div>
 
-    <div class="controls">
-      <div class="segmented" id="cityTabs" aria-label="City selector"></div>
+    <div class="tabs" id="cityTabs"></div>
 
-      <div class="chips">
-        <button class="chip chip-on" id="filterRestaurants" type="button">Restaurants</button>
-        <button class="chip chip-on" id="filterShops" type="button">Shops</button>
-        <button class="chip" id="filterStays" type="button">Hotels</button>
-      </div>
+    <div class="filters">
+      <button class="chip on" id="chipAll" type="button">הכל</button>
+      <button class="chip" id="chipRestaurants" type="button">מסעדות</button>
+      <button class="chip" id="chipShops" type="button">חנויות</button>
     </div>
   </header>
 
   <main class="main">
-    <div id="map" class="map" role="application" aria-label="Map"></div>
+    <div id="map" class="map"></div>
 
-    <section class="panel" aria-label="Places list">
-      <div class="panel-head">
+    <section class="sheet" id="sheet" aria-hidden="true">
+      <div class="handle"></div>
+      <div class="sheetBody">
+        <div class="sheetTitle" id="sheetTitle"></div>
+        <div class="sheetSub" id="sheetSub"></div>
+
+        <div class="actions">
+          <a class="btn primary" id="btnDirections" href="#" target="_blank" rel="noopener">Google Maps - הוראות הגעה</a>
+          <a class="btn" id="btnPlace" href="#" target="_blank" rel="noopener">Google Maps - פתח מקום</a>
+          <a class="btn" id="btnWebsite" href="#" target="_blank" rel="noopener">Website</a>
+          <a class="btn grab" id="btnGrab" href="#">Open Grab</a>
+        </div>
+
+        <div class="tip" id="tip"></div>
+        <div class="foot" id="foot"></div>
+      </div>
+    </section>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <div class="debug" id="debug"></div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>      <div class="panel-head">
         <div class="panel-title" id="panelTitle">Places</div>
         <div class="panel-meta" id="panelMeta"></div>
       </div>
