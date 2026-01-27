@@ -303,7 +303,7 @@ async function init() {
     render();
     
     el("ver").textContent = APP_VERSION;
-    el("verBadge").textContent = APP_VERSION; // NEW: show in header too
+    el("verBadge").textContent = APP_VERSION;
   } catch (e) {
     showDebug(e && e.message ? e.message : String(e));
   }
