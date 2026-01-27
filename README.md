@@ -103,6 +103,33 @@ The data file has two main sections:
 
 ---
 
+## 📍 How to Add More Kosher Places
+
+Edit `data/places.json`:
+
+```json
+{
+  "cityKey": "phuket",
+  "kind": "restaurant", // or "shop"
+  "name": "Restaurant Name",
+  "address": "Full street address",
+  "lat": 7.8943,
+  "lng": 98.2968,
+  "website": "https://example.com",
+  "kosher": "Chabad / Badatz / Self-certified",
+  "status": "verified", // or "claimed" or "unknown"
+  "notes": "Optional: Shabbat meals available, dairy only, etc."
+}
+```
+
+**How to get coordinates:**
+1. Go to Google Maps
+2. Right-click on the exact location
+3. Click the coordinates at the top
+4. Use the decimal format (e.g., 7.8943, 98.2968)
+
+---
+
 ## 🔄 Cache Busting (Force Browser Refresh)
 
 When you update JavaScript or CSS, browsers may cache old versions. To force refresh:
