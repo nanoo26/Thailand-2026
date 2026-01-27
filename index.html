@@ -6,11 +6,11 @@
   <title>Thailand 2026 - Kosher Map</title>
 
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="css/styles.css?v=4" />
+  <link rel="stylesheet" href="assets/styles.css?v=10" />
 </head>
 
 <body>
-  <header class="topbar">
+  <header class="topbar" id="topbar">
     <div class="brand">
       <div class="brand-title">Thailand 2026</div>
       <div class="brand-sub">Kosher restaurants + shops</div>
@@ -18,14 +18,14 @@
 
     <div class="segmented" id="cityTabs" aria-label="בחירת עיר"></div>
 
-    <div class="chips" aria-label="פילטר">
+    <div class="chips">
       <button class="chip on" id="chipAll" type="button">הכל</button>
       <button class="chip" id="chipRestaurants" type="button">מסעדות</button>
       <button class="chip" id="chipShops" type="button">חנויות</button>
     </div>
   </header>
 
-  <main class="main">
+  <main class="main" id="main">
     <div id="map" class="map" aria-label="מפה"></div>
 
     <section class="sheet" id="sheet" aria-hidden="true">
@@ -35,6 +35,30 @@
         <div class="sheet-sub" id="sheetSub"></div>
 
         <div class="ai-tip" id="aiTip"></div>
+
+        <div class="actions">
+          <a class="btn primary" id="btnDirections" href="#" target="_blank" rel="noopener">Google Maps - הוראות הגעה</a>
+          <a class="btn" id="btnPlace" href="#" target="_blank" rel="noopener">Google Maps - פתח מקום</a>
+          <a class="btn" id="btnWebsite" href="#" target="_blank" rel="noopener">Website</a>
+          <a class="btn grab" id="btnGrab" href="#">Open Grab</a>
+        </div>
+
+        <button class="close" id="btnClose" type="button">סגור</button>
+
+        <div class="foot" id="foot"></div>
+      </div>
+    </section>
+
+    <div class="backdrop" id="backdrop" hidden></div>
+
+    <div class="debug" id="debug" hidden></div>
+    <div class="ver" id="ver"></div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/app.js?v=10"></script>
+</body>
+</html>        <div class="ai-tip" id="aiTip"></div>
 
         <div class="actions">
           <a class="btn primary" id="btnDirections" href="#" target="_blank" rel="noopener">Google Maps - הוראות הגעה</a>
