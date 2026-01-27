@@ -260,3 +260,5 @@ Found a bug? Please include:
 - The app geocodes addresses using Nominatim (OpenStreetMap). It throttles to ~1 request/second.
 - First load may take a bit, then it caches results in localStorage.
 - "Status: claimed" means the business claims kosher on its own pages. Verify locally if you need strict confirmation.
+- Distance calculation uses haversine formula (as the crow flies)
+- Grab deep link may not work on all devices/browsers
