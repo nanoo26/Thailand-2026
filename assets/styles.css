@@ -31,6 +31,18 @@ body{
 .brand-title{font-weight:900;font-size:16px}
 .brand-sub{font-size:12px;color:var(--muted)}
 
+.ver-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
 .segmented{
   margin-top:10px;
   display:flex;
