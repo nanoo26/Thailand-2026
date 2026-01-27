@@ -1,7 +1,7 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v11-clean";
+const APP_VERSION = "v12-fixed";
 const DATA_URL = "data/places.json";
 
 const state = {
@@ -170,4 +170,37 @@ function render() {
 
 async function loadData() {
   const res = await fetch(DATA_URL, { cache: "no-store" });
-  if
+  if (!res.ok) throw new Error(`Failed to load ${DATA_URL} (${res.status})`);
+  return res.json();
+}
+
+async function init() {
+  try {
+    state.map = L.map("map", { zoomControl: true, tap: true });
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
+      subdomains: "abcd",
+      maxZoom: 19,
+      attribution: "© OpenStreetMap, © CARTO"
+    }).addTo(state.map);
+
+    el("backdrop").hidden = true;
+    el("backdrop").onclick = closeSheet;
+    el("btnClose").onclick = closeSheet;
+    
+    bindFilters();
+    
+    setMainTopFromHeader();
+    window.addEventListener("resize", setMainTopFromHeader);
+
+    state.data = await loadData();
+    hideDebug();
+    renderTabs();
+    render();
+    
+    el("ver").textContent = APP_VERSION;
+  } catch (e) {
+    showDebug(e && e.message ? e.message : String(e));
+  }
+}
+
+document.addEventListener("DOMContentLoaded", init);
