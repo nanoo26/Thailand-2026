@@ -1,5 +1,5 @@
 {
-  "_cache_version": "v17-2026-01-27",
+  "_cache_version": "v18-2026-01-28",
   "cities": [
     { "cityKey": "phuket", "labelHe": "פוקט", "hotelLat": 7.904425, "hotelLng": 98.29728, "zoom": 14 },
     { "cityKey": "samui", "labelHe": "קוסמוי", "hotelLat": 9.52469, "hotelLng": 100.05934, "zoom": 14 },
