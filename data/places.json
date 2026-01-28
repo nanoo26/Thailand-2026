@@ -1,5 +1,5 @@
 {
-  "_cache_version": "v15-2026-01-28",
+  "_cache_version": "v15-2026-01-27",
   "cities": [
     { "cityKey": "phuket", "labelHe": "פוקט", "hotelLat": 7.904425, "hotelLng": 98.29728, "zoom": 14 },
     { "cityKey": "samui", "labelHe": "קוסמוי", "hotelLat": 9.52469, "hotelLng": 100.05934, "zoom": 14 },
@@ -38,6 +38,61 @@
       "website": "https://www.jewishthailand.com",
       "kosher": "Chabad Thailand (Dairy)",
       "status": "verified"
+    },
+    {
+      "cityKey": "phuket",
+      "kind": "restaurant",
+      "name": "GOPAL Pure Vegetarian",
+      "address": "Rat-U-Thit 200 Year Road, Patong, Kathu District, Phuket 83150",
+      "lat": 7.893865,
+      "lng": 98.294921,
+      "website": "",
+      "kosher": "Vegetarian (no certification)",
+      "status": "recommended"
+    },
+    {
+      "cityKey": "phuket",
+      "kind": "restaurant",
+      "name": "Tantra Patong Indian Restaurant",
+      "address": "70/1 Bangla Rd, Patong, Kathu District, Phuket 83150",
+      "lat": 7.892457,
+      "lng": 98.297363,
+      "website": "",
+      "kosher": "Vegetarian options (no certification)",
+      "status": "recommended"
+    },
+    {
+      "cityKey": "phuket",
+      "kind": "restaurant",
+      "name": "YO Vegan Restaurant",
+      "address": "2/7 Sawaddirak Rd, Patong, Kathu, Phuket 83150",
+      "lat": 7.897142,
+      "lng": 98.295601,
+      "website": "",
+      "kosher": "Vegan (no certification)",
+      "status": "recommended"
+    },
+    {
+      "cityKey": "phuket",
+      "kind": "restaurant",
+      "name": "Soul Phuket Vegan Cafe",
+      "address": "224 Karon Road, Karon, Phuket, Thailand",
+      "lat": 7.852340,
+      "lng": 98.294449,
+      "website": "",
+      "kosher": "Vegan (no certification)",
+      "status": "recommended"
+    },
+    {
+      "cityKey": "phuket",
+      "kind": "restaurant",
+      "name": "Hare Krishna Vegetarian",
+      "address": "198 Phangmuang Sai Kor Rd, Patong, Kathu District, Phuket 83150",
+      "lat": 7.888099,
+      "lng": 98.295494,
+      "website": "",
+      "kosher": "Vegetarian (no certification)",
+      "status": "recommended"
     },
     {
       "cityKey": "samui",
@@ -106,70 +161,15 @@
       "status": "verified"
     },
     {
-      "cityKey": "phuket",
-      "kind": "restaurant",
-      "name": "GOPAL Pure Vegetarian",
-      "address": "Rat-U-Thit 200 Year Road, Patong, Kathu, Phuket 83150",
-      "lat": 7.893865,
-      "lng": 98.294921,
-      "website": "",
-      "kosher": "Indian vegetarian (no kosher certification)",
-      "status": "unverified"
-    },
-    {
-      "cityKey": "phuket",
-      "kind": "restaurant",
-      "name": "Tantra Patong Indian Restaurant",
-      "address": "70/1 Bangla Rd, Patong, Kathu, Phuket 83150",
-      "lat": 7.892457,
-      "lng": 98.297363,
-      "website": "",
-      "kosher": "Indian vegetarian options (no kosher certification)",
-      "status": "unverified"
-    },
-    {
-      "cityKey": "phuket",
-      "kind": "restaurant",
-      "name": "YO Vegan Restaurant",
-      "address": "2/7 Sawaddirak Rd, Patong, Phuket",
-      "lat": 7.897142,
-      "lng": 98.295601,
-      "website": "",
-      "kosher": "Vegan (no kosher certification)",
-      "status": "unverified"
-    },
-    {
-      "cityKey": "phuket",
-      "kind": "restaurant",
-      "name": "Soul Phuket Vegan Cafe",
-      "address": "224 Karon Road, Karon, Phuket",
-      "lat": 7.852340,
-      "lng": 98.294449,
-      "website": "",
-      "kosher": "Vegan pizza & Italian (no kosher certification)",
-      "status": "unverified"
-    },
-    {
-      "cityKey": "phuket",
-      "kind": "restaurant",
-      "name": "Hare Krishna Indian Vegetarian",
-      "address": "198 Phangmuang Sai Kor Rd, Patong, Kathu, Phuket 83150",
-      "lat": 7.888099,
-      "lng": 98.295494,
-      "website": "",
-      "kosher": "Indian vegetarian (no kosher certification)",
-      "status": "unverified"
-    },
-    {
       "cityKey": "bangkok",
       "kind": "shop",
-      "name": "Fortune Town Bangkok",
+      "name": "Fortune Town",
       "address": "7 Ratchadaphisek Rd, Din Daeng, Bangkok 10400",
       "lat": 13.7561,
       "lng": 100.5643,
       "website": "",
-      "kosher": "Shopping mall - IT & electronics",
-      "status": "unverified"
+      "kosher": "Shopping mall (electronics, general dining)",
+      "status": "landmark"
     }
   ]
 }

@@ -1,7 +1,7 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v15-add-veggie";
+const APP_VERSION = "v15-new-places";
 const DATA_URL = "data/places.json";
 
 const state = {
