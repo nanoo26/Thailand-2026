@@ -1,5 +1,5 @@
 {
-  "_cache_version": "v15-2026-01-27",
+  "_cache_version": "v16-2026-01-27",
   "cities": [
     { "cityKey": "phuket", "labelHe": "פוקט", "hotelLat": 7.904425, "hotelLng": 98.29728, "zoom": 14 },
     { "cityKey": "samui", "labelHe": "קוסמוי", "hotelLat": 9.52469, "hotelLng": 100.05934, "zoom": 14 },
@@ -170,6 +170,39 @@
       "website": "",
       "kosher": "Shopping mall (electronics, general dining)",
       "status": "landmark"
+    },
+    {
+      "cityKey": "phuket",
+      "kind": "hotel",
+      "name": "המלון שלנו",
+      "address": "Four Points by Sheraton, Patong Beach",
+      "lat": 7.904425,
+      "lng": 98.29728,
+      "website": "",
+      "kosher": "",
+      "status": "our-hotel"
+    },
+    {
+      "cityKey": "samui",
+      "kind": "hotel",
+      "name": "המלון שלנו",
+      "address": "OZO Chaweng Samui",
+      "lat": 9.52469,
+      "lng": 100.05934,
+      "website": "",
+      "kosher": "",
+      "status": "our-hotel"
+    },
+    {
+      "cityKey": "bangkok",
+      "kind": "hotel",
+      "name": "המלון שלנו",
+      "address": "LiT Bangkok Hotel",
+      "lat": 13.7481024,
+      "lng": 100.5295718,
+      "website": "",
+      "kosher": "",
+      "status": "our-hotel"
     }
   ]
 }
