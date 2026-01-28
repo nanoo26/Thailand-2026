@@ -1,13 +1,13 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v15-new-places";
+const APP_VERSION = "v16-hotels-english-map";
 const DATA_URL = "data/places.json";
 
 const state = {
   data: null,
   cityKey: "phuket",
-  filter: "all", // all | restaurant | shop
+  filter: "all", // all | restaurant | shop | hotel
   map: null,
   markers: []
 };
@@ -141,6 +141,18 @@ function openSheet(item) {
     w.href = "#";
   }
 
+  // Skip distance calculation for hotels (they are the reference points)
+  if (item.kind === "hotel") {
+    el("aiTip").textContent = "🏨 This is your hotel location. Use this as your starting point for navigation.";
+    el("btnGrab").style.display = "none";
+    el("foot").textContent = item.status ? `Status: ${item.status}` : "";
+    
+    el("backdrop").hidden = false;
+    el("sheet").classList.add("open");
+    el("sheet").setAttribute("aria-hidden", "false");
+    return;
+  }
+
   const km = haversineKm(city.hotelLat, city.hotelLng, item.lat, item.lng);
   
   // Enhanced AI logic
@@ -238,7 +250,7 @@ function renderTabs() {
 }
 
 function setChip(activeId) {
-  ["chipAll", "chipRestaurants", "chipShops"].forEach(id => el(id).classList.remove("on"));
+  ["chipAll", "chipRestaurants", "chipShops", "chipHotels"].forEach(id => el(id).classList.remove("on"));
   el(activeId).classList.add("on");
 }
 
@@ -246,6 +258,7 @@ function bindFilters() {
   el("chipAll").onclick = () => { state.filter = "all"; setChip("chipAll"); render(); };
   el("chipRestaurants").onclick = () => { state.filter = "restaurant"; setChip("chipRestaurants"); render(); };
   el("chipShops").onclick = () => { state.filter = "shop"; setChip("chipShops"); render(); };
+  el("chipHotels").onclick = () => { state.filter = "hotel"; setChip("chipHotels"); render(); };
 }
 
 function render() {
@@ -266,7 +279,22 @@ function render() {
 
   items.forEach(item => {
     if (!Number.isFinite(item.lat) || !Number.isFinite(item.lng)) return;
-    const m = L.marker([item.lat, item.lng]).addTo(state.map);
+    
+    // Create custom icon for hotels (star emoji)
+    let markerIcon = null;
+    if (item.kind === "hotel") {
+      markerIcon = L.divIcon({
+        html: '<div>⭐</div>',
+        className: 'hotel-marker',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16]
+      });
+    }
+    
+    const m = markerIcon 
+      ? L.marker([item.lat, item.lng], { icon: markerIcon }).addTo(state.map)
+      : L.marker([item.lat, item.lng]).addTo(state.map);
+      
     m.on("click", () => openSheet(item));
     state.markers.push(m);
   });
@@ -283,9 +311,10 @@ async function loadData() {
 async function init() {
   try {
     state.map = L.map("map", { zoomControl: true, tap: true });
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+      subdomains: "abcd",
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(state.map);
 
     el("backdrop").hidden = true;
