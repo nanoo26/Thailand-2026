@@ -224,3 +224,9 @@ body{
   background: transparent;
   border: none;
 }
+
+.hotel-marker div {
+  font-size: 32px;
+  text-align: center;
+  line-height: 1;
+}

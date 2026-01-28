@@ -141,6 +141,18 @@ function openSheet(item) {
     w.href = "#";
   }
 
+  // Skip distance calculation for hotels (they are the reference points)
+  if (item.kind === "hotel") {
+    el("aiTip").textContent = "🏨 This is your hotel location. Use this as your starting point for navigation.";
+    el("btnGrab").style.display = "none";
+    el("foot").textContent = item.status ? `Status: ${item.status}` : "";
+    
+    el("backdrop").hidden = false;
+    el("sheet").classList.add("open");
+    el("sheet").setAttribute("aria-hidden", "false");
+    return;
+  }
+
   const km = haversineKm(city.hotelLat, city.hotelLng, item.lat, item.lng);
   
   // Enhanced AI logic
@@ -272,7 +284,7 @@ function render() {
     let markerIcon = null;
     if (item.kind === "hotel") {
       markerIcon = L.divIcon({
-        html: '<div style="font-size:32px;text-align:center;line-height:1;">⭐</div>',
+        html: '<div>⭐</div>',
         className: 'hotel-marker',
         iconSize: [32, 32],
         iconAnchor: [16, 16]
