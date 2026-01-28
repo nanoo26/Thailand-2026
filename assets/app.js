@@ -1,7 +1,7 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v14-zindex-fix";
+const APP_VERSION = "v15-add-veggie";
 const DATA_URL = "data/places.json";
 
 const state = {
