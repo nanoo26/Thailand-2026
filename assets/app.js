@@ -1,7 +1,7 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v17-voyager-map";
+const APP_VERSION = "v18-voyager-fixed";
 const DATA_URL = "data/places.json";
 
 const state = {
