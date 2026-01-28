@@ -1,7 +1,7 @@
 "use strict";
 
 /* English-only code */
-const APP_VERSION = "v16-hotels-english-map";
+const APP_VERSION = "v17-voyager-map";
 const DATA_URL = "data/places.json";
 
 const state = {
@@ -311,7 +311,7 @@ async function loadData() {
 async function init() {
   try {
     state.map = L.map("map", { zoomControl: true, tap: true });
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
       subdomains: "abcd",
       maxZoom: 19,
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
